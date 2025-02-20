@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Graph Visualization</title>
+  <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+</head>
+<body>
+<div id="cy" style="width: 600px; height: 600px;"></div>
+<script>
+  // Пример данных, полученных из запроса Cypher
+  // Преобразование данных из модели в формат, подходящий для Cytoscape.js
+  var elements = [[${elements}]];
+
+  // Инициализация Cytoscape.js
+  var cy = cytoscape({
+    container: document.getElementById('cy'),
+    elements: elements,
+    style: [
+      {
+        selector: 'node',
+        style: {
+          'label': 'data(label)',
+          'background-color': '#11479e'
+        }
+      },
+      {
+        selector: 'edge',
+        style: {
+          'label': 'data(label)',
+          'width': 3,
+          'line-color': '#9dbaea'
+        }
+      }
+    ],
+    layout: {
+      name: 'breadthfirst',
+      directed: true,
+      roots: '#a',
+      padding: 10
+    }
+  });
+</script>
+</body>
+</html>
