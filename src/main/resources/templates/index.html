@@ -6,16 +6,35 @@
   <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
 </head>
 <body>
+
 <div id="cy" style="width: 600px; height: 600px;"></div>
-<script>
+<script th:inline="javascript">
   // Пример данных, полученных из запроса Cypher
   // Преобразование данных из модели в формат, подходящий для Cytoscape.js
-  var elements = [[${elements}]];
+  // var cyData = {
+  //   nodes: [
+  //     { data: { id: 'a', label: 'Node A' } },
+  //     { data: { id: 'b', label: 'Node B' } },
+  //     { data: { id: 'c', label: 'Node C' } }
+  //   ],
+  //   edges: [
+  //     { data: { id: 'ab', source: 'a', target: 'b', label: 'Edge AB' } },
+  //     { data: { id: 'bc', source: 'b', target: 'c', label: 'Edge BC' } },
+  //     { data: { id: 'ca', source: 'c', target: 'a', label: 'Edge CA' } }
+  //   ]
+  // };
+
+  var cyData = {
+    nodes: [[${nodes}]] ,
+    edges: [[${edges}]]
+  };
+
+  console.log(cyData);
 
   // Инициализация Cytoscape.js
   var cy = cytoscape({
     container: document.getElementById('cy'),
-    elements: elements,
+    elements: cyData,
     style: [
       {
         selector: 'node',

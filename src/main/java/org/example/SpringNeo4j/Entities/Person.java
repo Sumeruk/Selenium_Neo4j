@@ -1,26 +1,44 @@
 package org.example.SpringNeo4j.Entities;
 
 import com.sun.istack.NotNull;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.neo4j.core.schema.Node;
+import org.springframework.data.neo4j.core.schema.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Node
 public class Person {
 
     @Id
+    @GeneratedValue
     private Long id;
     @NotNull
+    @Property
     private String name;
 
-//    @Relationship(type = "FRIEND_OF", direction = Relationship.Direction.OUTGOING)
-//    private List<Person> friends;
+    @Relationship(type = "FRIEND_OF", direction = Relationship.Direction.OUTGOING)
+    private List<Person> friends = new ArrayList<>();
 
+    @Relationship(type = "FRIENDS_OF2", direction = Relationship.Direction.OUTGOING)
+    private List<Relation> relations = new ArrayList<>();
 
-    // Конструкторы, геттеры и сеттеры
+    public void addFriendship(Person person) {
+        this.friends.add(person);
+    }
+
+    public void addRelation(Relation relation){
+        this.relations.add(relation);
+    }
 
     public Person(Long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Person(Long id, String name, List<Person> person) {
+        this.id = id;
+        this.name = name;
+        this.friends = person;
     }
 
     // Геттеры и сеттеры

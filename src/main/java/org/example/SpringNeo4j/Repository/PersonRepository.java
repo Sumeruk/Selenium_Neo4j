@@ -14,4 +14,5 @@ public interface PersonRepository extends Neo4jRepository<Person, Long> {
             "p = shortestPath((start)-[*..10]-(end)) " +
             "RETURN p")
     Iterable<PathValue> findShortestPath(@Param("startName") String startName, @Param("endName") String endName);
+
 }
