@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+</head>
+<body>
+
+<div id="cy" style="width: 600px; height: 600px;"></div>
+<script th:inline="javascript">
+  var cyData = {
+    nodes: [[${nodes}]] ,
+    edges: [[${edges}]]
+  };
+
+  console.log(cyData);
+
+  // Инициализация Cytoscape.js
+  var cy = cytoscape({
+    container: document.getElementById('cy'),
+    elements: cyData,
+    style: [
+      {
+        selector: 'node',
+        style: {
+          'label': 'data(label)',
+          'background-color': '#11479e'
+        }
+      },
+      {
+        selector: 'edge',
+        style: {
+          'label': 'data(label)',
+          'width': 3,
+          'line-color': '#9dbaea'
+        }
+      }
+    ],
+    layout: {
+      name: 'breadthfirst',
+      directed: true,
+      roots: '#a',
+      padding: 10
+    }
+  });
+</script>
+</body>
+</html>
