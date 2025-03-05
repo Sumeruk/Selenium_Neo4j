@@ -1,4 +1,4 @@
-package org.example.SpringNeo4j;
+package org.example.WebAnalitycs;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

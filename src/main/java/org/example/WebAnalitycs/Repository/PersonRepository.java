@@ -1,6 +1,6 @@
-package org.example.SpringNeo4j.Repository;
+package org.example.WebAnalitycs.Repository;
 
-import org.example.SpringNeo4j.Entities.Person;
+import org.example.WebAnalitycs.Entities.Nodes.Person;
 import org.neo4j.driver.internal.value.PathValue;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;

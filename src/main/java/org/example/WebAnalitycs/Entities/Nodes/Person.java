@@ -1,6 +1,7 @@
-package org.example.SpringNeo4j.Entities;
+package org.example.WebAnalitycs.Entities.Nodes;
 
 import com.sun.istack.NotNull;
+import org.example.WebAnalitycs.Entities.Relations.Relation;
 import org.springframework.data.neo4j.core.schema.*;
 
 import java.util.ArrayList;
@@ -30,6 +31,14 @@ public class Person {
         this.relations.add(relation);
     }
 
+    public Person() {
+
+    }
+
+    public Person(Long id) {
+        this.id = id;
+    }
+
     public Person(Long id, String name) {
         this.id = id;
         this.name = name;
@@ -39,6 +48,13 @@ public class Person {
         this.id = id;
         this.name = name;
         this.friends = person;
+    }
+
+    public Person(Long id, String name, List<Person> friends, List<Relation> relations) {
+        this.id = id;
+        this.name = name;
+        this.friends = friends;
+        this.relations = relations;
     }
 
     // Геттеры и сеттеры
@@ -59,11 +75,29 @@ public class Person {
         this.name = name;
     }
 
-//    public Set<Person> getFriends() {
-//        return friends;
-//    }
-//
-//    public void setFriends(Set<Person> friends) {
-//        this.friends = friends;
-//    }
+    public List<Person> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<Person> friends) {
+        this.friends = friends;
+    }
+
+    public List<Relation> getRelations() {
+        return relations;
+    }
+
+    public void setRelations(List<Relation> relations) {
+        this.relations = relations;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", friends=" + friends +
+                ", relations=" + relations +
+                '}';
+    }
 }
