@@ -34,7 +34,7 @@ public class WebCrowlerController {
         List<Map<String, Object>> nodesOnPage = new ArrayList<>();
 
         for (Page node: pages) {
-            nodesOnPage.add(Map.of("data", Map.of("id", node.getId(), "label", node.getTitle())));
+            nodesOnPage.add(Map.of("data", Map.of("id", node.getUrl(), "label", node.getTitle())));
         }
 
         // Ребра
@@ -43,9 +43,9 @@ public class WebCrowlerController {
         for (int i = 0; i < pages.size(); i++) {
             List<Link> linksAtPage = pages.get(i).getLinks();
             for (int j = 0; j < linksAtPage.size(); j++) {
-                edgesOnPage.add(Map.of("data", Map.of("id", linksAtPage.get(j),
-                        "source", pages.get(i),
-                        "target", linksAtPage.get(j), "label", "переход на")));
+                edgesOnPage.add(Map.of("data", Map.of("id", linksAtPage.get(j).getId(),
+                        "source", pages.get(i).getUrl(),
+                        "target", linksAtPage.get(j).getNextPage().getUrl(), "label", "link to")));
             }
         }
 

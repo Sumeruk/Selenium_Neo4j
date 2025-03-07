@@ -20,18 +20,15 @@ import java.util.List;
 public class Page {
 
     @Id
-    @GeneratedValue
-    Long id;
-
-    String title;
     String url;
+    String title;
 
     @Relationship(type = "TRANSITION_TO", direction = Relationship.Direction.OUTGOING)
     List<Link> links = new ArrayList<>();
 
-    public Page(String title, String url, List<Link> links) {
-        this.title = title;
-        this.url = url;
-        this.links = links;
+    public void addOneLink(Link link){
+        links.add(link);
     }
+
+
 }
